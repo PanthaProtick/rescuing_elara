@@ -52,7 +52,7 @@ ladder l[totalLadders],l2[totalLadders2];
 avatar a1;
 barrel b1;
 fireball f1;
-int idle[4], invertedIdle[4], jump[6], invertedJump[6], run[10], invertedRun[10], barrelImg[2], takeHit[6], invertedTakeHit[6];
+int idle[4], invertedIdle[4], jump[6], invertedJump[6], run[8], invertedRun[8], barrelImg[2], takeHit[6], invertedTakeHit[6];
 
 void showLadder(ladder l1){
 	int temp = l1.starty;
@@ -76,7 +76,7 @@ void gravityCheck(){
 	if (lvl == 1){
 		if (!a1.isClimbing&&!a1.isJumping){
 			for (int d = totalPlats - 1; d >= 0; d--){
-				if (p[d].cordy + 16 <= a1.y && a1.x + 16 <= p[d].endx && a1.x + 16 >= p[d].startx){
+				if (p[d].cordy + 16 <= a1.y && a1.x + 36 <= p[d].endx && a1.x + 16 >= p[d].startx){
 					a1.ymax = p[d].cordy + 16;
 					a1.currentPlatform = d;
 					break;
@@ -87,7 +87,7 @@ void gravityCheck(){
 	else if (lvl == 2){
 		if (!a1.isClimbing&&!a1.isJumping){
 			for (int d = totalPlats - 1; d >= 0; d--){
-				if (p2[d].cordy + 16 <= a1.y && a1.x + 16 <= p2[d].endx && a1.x + 16 >= p2[d].startx){
+				if (p2[d].cordy + 16 <= a1.y && a1.x + 36 <= p2[d].endx && a1.x + 16 >= p2[d].startx){
 					a1.ymax = p2[d].cordy + 16;
 					a1.currentPlatform = d;
 					break;
@@ -99,10 +99,10 @@ void gravityCheck(){
 void idleFunc(){
 	if (idleTimer == 0){
 		if (a1.isInverted){
-			iShowImage(a1.x, a1.y, 32, 32, idle[idleI]);
+			iShowImage(a1.x, a1.y, 48, 48, idle[idleI]);
 		}
 		else{
-			iShowImage(a1.x, a1.y, 32, 32, invertedIdle[idleI]);
+			iShowImage(a1.x, a1.y, 48, 48, invertedIdle[idleI]);
 		}
 		idleI++;
 		idleI %= 4;
@@ -110,10 +110,10 @@ void idleFunc(){
 	}
 	else{
 		if (a1.isInverted){
-			iShowImage(a1.x, a1.y, 32, 32, idle[idleI]);
+			iShowImage(a1.x, a1.y, 48, 48, idle[idleI]);
 		}
 		else{
-			iShowImage(a1.x, a1.y, 32, 32, invertedIdle[idleI]);
+			iShowImage(a1.x, a1.y, 48, 48, invertedIdle[idleI]);
 		}
 		idleTimer--;
 	}
@@ -121,10 +121,10 @@ void idleFunc(){
 void jumpFunc(){
 	if (jumpTimer == 0){
 		if (a1.isInverted){
-			iShowImage(a1.x, a1.y, 32, 32, jump[jumpI]);
+			iShowImage(a1.x, a1.y, 48, 48, jump[jumpI]);
 		}
 		else{
-			iShowImage(a1.x, a1.y, 32, 32, invertedJump[jumpI]);
+			iShowImage(a1.x, a1.y, 48, 48, invertedJump[jumpI]);
 		}
 		jumpI++;
 		jumpI %= 6;
@@ -132,10 +132,10 @@ void jumpFunc(){
 	}
 	else{
 		if (a1.isInverted){
-			iShowImage(a1.x, a1.y, 32, 32, jump[jumpI]);
+			iShowImage(a1.x, a1.y, 48, 48, jump[jumpI]);
 		}
 		else{
-			iShowImage(a1.x, a1.y, 32, 32, invertedJump[jumpI]);
+			iShowImage(a1.x, a1.y, 48, 48, invertedJump[jumpI]);
 		}
 		jumpTimer--;
 	}
@@ -143,21 +143,21 @@ void jumpFunc(){
 void runFunc(){
 	if (runTimer == 0){
 		if (a1.isInverted){
-			iShowImage(a1.x, a1.y, 32, 32, run[runI]);
+			iShowImage(a1.x, a1.y, 48, 48, run[runI]);
 		}
 		else{
-			iShowImage(a1.x, a1.y, 32, 32, invertedRun[runI]);
+			iShowImage(a1.x, a1.y, 48, 48, invertedRun[runI]);
 		}
 		runI++;
-		runI %= 10;
+		runI %= 8;
 		runTimer = 350;
 	}
 	else{
 		if (a1.isInverted){
-			iShowImage(a1.x, a1.y, 32, 32, run[runI]);
+			iShowImage(a1.x, a1.y, 48, 48, run[runI]);
 		}
 		else{
-			iShowImage(a1.x, a1.y, 32, 32, invertedRun[runI]);
+			iShowImage(a1.x, a1.y, 48, 48, invertedRun[runI]);
 		}
 		runTimer--;
 	}
@@ -177,10 +177,10 @@ void barrelFunc(){
 void takeHitFunc(){
 	if (takeHitTimer == 0){
 		if (a1.isInverted){
-			iShowImage(a1.x, a1.y, 32, 32, takeHit[takeHitI]);
+			iShowImage(a1.x, a1.y, 48, 48, takeHit[takeHitI]);
 		}
 		else{
-			iShowImage(a1.x, a1.y, 32, 32, invertedTakeHit[takeHitI]);
+			iShowImage(a1.x, a1.y, 48, 48, invertedTakeHit[takeHitI]);
 		}
 		takeHitI++;
 		takeHitI %= 6;
@@ -191,10 +191,10 @@ void takeHitFunc(){
 	}
 	else{
 		if (a1.isInverted){
-			iShowImage(a1.x, a1.y, 32, 32, takeHit[takeHitI]);
+			iShowImage(a1.x, a1.y, 48, 48, takeHit[takeHitI]);
 		}
 		else{
-			iShowImage(a1.x, a1.y, 32, 32, invertedTakeHit[takeHitI]);
+			iShowImage(a1.x, a1.y, 48, 48, invertedTakeHit[takeHitI]);
 		}
 		takeHitTimer--;
 	}
@@ -286,19 +286,21 @@ void level1(){
 		if (a1.currentPlatform == 3 && lvl == 1){
 			lvl = 2;
 			a1.x = 0;
-			a1.y = 0;
-			a1.ymax = 0;
-			b1.isInitialized = 0;
+			a1.currentPlatform = 0;
+			a1.ymax = p2[0].cordy+16;
+			a1.y = a1.ymax;
+			b1.isInitialized = false;
+			f1.isInitialized = false;
 		}
 		else a1.x = 0;
 	}
 	if (a1.x>1168) a1.x = 1168;
 	if (a1.isJumping){
-		a1.y += .0625;
+		a1.y += 0.03125;
 	}
 	//Gravity 
 	if (!a1.isJumping && (int)a1.ymax != (int)a1.y){
-		a1.y -= .0625;
+		a1.y -= 0.03125;
 	}
 	if (a1.ymax > a1.y) a1.y = a1.ymax;
 	if ((a1.y - a1.ymax) >= 32) a1.isJumping = false;
@@ -314,7 +316,7 @@ void level1(){
 	if (!a1.isClimbing) {
 		for (int d = 0; d < availableLadders; d++) {
 			// Check if character's x-position is within ladder range
-			if ((a1.x + 16 >= l[ladderStart + d].cordx && a1.x <= l[ladderStart + d].cordx)) {
+			if ((a1.x + 32 >= l[ladderStart + d].cordx && a1.x + 6  <= l[ladderStart + d].cordx)) {
 				a1.ladderAt = ladderStart + d;
 				a1.isClimbing = true;
 				break;
@@ -322,7 +324,7 @@ void level1(){
 		}
 	}
 	else { // If climbing, check if the ladder is out of contact
-		if (!(a1.x + 16 >= l[a1.ladderAt].cordx && a1.x <= l[a1.ladderAt].cordx)) {
+		if (!(a1.x + 32 >= l[a1.ladderAt].cordx && a1.x + 6 <= l[a1.ladderAt].cordx)) {
 			a1.isClimbing = false;
 		}
 	}
@@ -338,7 +340,12 @@ void level1(){
 	//Gravity Check Function
 	gravityCheck();
 	//Check Collision of Barrels
-	if (b1.isInitialized && abs(a1.x - b1.x) <= 16 && !a1.isTakingHit && abs(a1.y - b1.y)<=10) a1.isTakingHit = true;
+	if (a1.isInverted){
+		if (b1.isInitialized && abs(a1.x - b1.x) <= 16 && !a1.isTakingHit && abs((int)a1.y - b1.y) <= 10) a1.isTakingHit = true;
+	}
+	else{
+		if (b1.isInitialized && abs(a1.x+40 - b1.x) <= 16 && !a1.isTakingHit && abs((int)a1.y - b1.y) <= 10) a1.isTakingHit = true;
+	}
 	//Show Images
 	showImages();
 }
@@ -351,11 +358,11 @@ void level2(){
 	}
 	if (a1.x>1168) a1.x = 1168;
 	if (a1.isJumping){
-		a1.y += .0625;
+		a1.y += 0.03125;
 	}
 	//Gravity 
 	if (!a1.isJumping && (int)a1.ymax != (int)a1.y){
-		a1.y -= .0625;
+		a1.y -= 0.03125;
 	}
 	if (a1.ymax > a1.y) a1.y = a1.ymax;
 	if ((a1.y - a1.ymax) >= 32) a1.isJumping = false;
@@ -371,7 +378,7 @@ void level2(){
 	if (!a1.isClimbing) {
 		for (int d = 0; d < availableLadders; d++) {
 			// Check if character's x-position is within ladder range
-			if ((a1.x + 16 >= l2[ladderStart + d].cordx && a1.x <= l2[ladderStart + d].cordx)) {
+			if ((a1.x + 32 >= l2[ladderStart + d].cordx && a1.x + 6 <= l2[ladderStart + d].cordx)) {
 				a1.ladderAt = ladderStart + d;
 				a1.isClimbing = true;
 				break;
@@ -379,7 +386,7 @@ void level2(){
 		}
 	}
 	else { // If climbing, check if the ladder is out of contact
-		if (!(a1.x + 16 >= l2[a1.ladderAt].cordx && a1.x <= l2[a1.ladderAt].cordx)) {
+		if (!(a1.x + 32 >= l2[a1.ladderAt].cordx && a1.x + 6 <= l2[a1.ladderAt].cordx)) {
 			a1.isClimbing = false;
 		}
 	}
@@ -402,16 +409,28 @@ void level2(){
 		f1.y= min + (rand() % (max - min + 1));
 	}
 	else{
-		f1.x -= 0.25;
+		f1.x -= 0.125;
 		if (f1.x <= 0) f1.isInitialized = false;
 	}
 	//Check Collision of Fireball and Barrel
 	if (!a1.isTakingHit){
-		if (f1.isInitialized && abs(a1.x - (int)f1.x) <= 10 && abs((int)a1.y - f1.y) <= 20){
-			a1.isTakingHit = true;
+		//Check Collision of Barrels
+		if (a1.isInverted){
+			if (b1.isInitialized && abs(a1.x - b1.x) <= 16 && !a1.isTakingHit && abs((int)a1.y - b1.y) <= 10) a1.isTakingHit = true;
 		}
-		else if (b1.isInitialized && abs(a1.x - b1.x) <= 12 && abs((int)a1.y - b1.y) <= 10){
-			a1.isTakingHit = true;
+		else{
+			if (b1.isInitialized && abs(a1.x + 40 - b1.x) <= 16 && !a1.isTakingHit && abs((int)a1.y - b1.y) <= 10) a1.isTakingHit = true;
+		}
+		//Check Collision of Fireball
+		if (a1.isInverted){
+			if (f1.isInitialized && abs(a1.x - (int)f1.x) <= 16 && abs((int)a1.y - f1.y) <= 12 && !a1.isTakingHit){
+				a1.isTakingHit = true;
+			}
+		}
+		else{
+			if (f1.isInitialized && abs(a1.x + 40 - (int)f1.x) <= 16 && abs((int)a1.y - f1.y) <= 12 && !a1.isTakingHit){
+				a1.isTakingHit = true;
+			}
 		}
 	}
 	//Show Images
@@ -565,25 +584,25 @@ int main()
 	a1.nonInverted = iLoadImage("./assets/images/avatar.png");
 	a1.inverted = iLoadImage("./assets/images/avatarinverted.png");
 	idle[0] = iLoadImage("./assets/images/idle_1.png");
-	idle[1] = iLoadImage("./assets/images/idle_5.png");
-	idle[2] = iLoadImage("./assets/images/idle_9.png");
-	idle[3] = iLoadImage("./assets/images/idle_12.png");
+	idle[1] = iLoadImage("./assets/images/idle_2.png");
+	idle[2] = iLoadImage("./assets/images/idle_3.png");
+	idle[3] = iLoadImage("./assets/images/idle_4.png");
 	invertedIdle[0] = iLoadImage("./assets/images/invertedIdle_1.png");
-	invertedIdle[1] = iLoadImage("./assets/images/invertedIdle_5.png");
-	invertedIdle[2] = iLoadImage("./assets/images/invertedIdle_9.png");
-	invertedIdle[3] = iLoadImage("./assets/images/invertedIdle_12.png");
+	invertedIdle[1] = iLoadImage("./assets/images/invertedIdle_2.png");
+	invertedIdle[2] = iLoadImage("./assets/images/invertedIdle_3.png");
+	invertedIdle[3] = iLoadImage("./assets/images/invertedIdle_4.png");
 	jump[0] = iLoadImage("./assets/images/jump_1.png");
-	jump[1] = iLoadImage("./assets/images/jump_3.png");
-	jump[2] = iLoadImage("./assets/images/jump_9.png");
-	jump[3] = iLoadImage("./assets/images/jump_10.png");
-	jump[4] = iLoadImage("./assets/images/jump_20.png");
-	jump[5] = iLoadImage("./assets/images/jump_22.png");
+	jump[1] = iLoadImage("./assets/images/jump_2.png");
+	jump[2] = iLoadImage("./assets/images/jump_3.png");
+	jump[3] = iLoadImage("./assets/images/jump_4.png");
+	jump[4] = iLoadImage("./assets/images/jump_5.png");
+	jump[5] = iLoadImage("./assets/images/jump_6.png");
 	invertedJump[0] = iLoadImage("./assets/images/Invertedjump_1.png");
-	invertedJump[1] = iLoadImage("./assets/images/Invertedjump_3.png");
-	invertedJump[2] = iLoadImage("./assets/images/Invertedjump_9.png");
-	invertedJump[3] = iLoadImage("./assets/images/Invertedjump_10.png");
-	invertedJump[4] = iLoadImage("./assets/images/Invertedjump_20.png");
-	invertedJump[5] = iLoadImage("./assets/images/Invertedjump_22.png");
+	invertedJump[1] = iLoadImage("./assets/images/Invertedjump_2.png");
+	invertedJump[2] = iLoadImage("./assets/images/Invertedjump_3.png");
+	invertedJump[3] = iLoadImage("./assets/images/Invertedjump_4.png");
+	invertedJump[4] = iLoadImage("./assets/images/Invertedjump_5.png");
+	invertedJump[5] = iLoadImage("./assets/images/Invertedjump_6.png");
 	run[0] = iLoadImage("./assets/images/run_1.png");
 	run[1] = iLoadImage("./assets/images/run_2.png");
 	run[2] = iLoadImage("./assets/images/run_3.png");
@@ -592,8 +611,6 @@ int main()
 	run[5] = iLoadImage("./assets/images/run_6.png");
 	run[6] = iLoadImage("./assets/images/run_7.png");
 	run[7] = iLoadImage("./assets/images/run_8.png");
-	run[8] = iLoadImage("./assets/images/run_9.png");
-	run[9] = iLoadImage("./assets/images/run_10.png");
 	invertedRun[0] = iLoadImage("./assets/images/Invertedrun_1.png");
 	invertedRun[1] = iLoadImage("./assets/images/Invertedrun_2.png");
 	invertedRun[2] = iLoadImage("./assets/images/Invertedrun_3.png");
@@ -602,8 +619,6 @@ int main()
 	invertedRun[5] = iLoadImage("./assets/images/Invertedrun_6.png");
 	invertedRun[6] = iLoadImage("./assets/images/Invertedrun_7.png");
 	invertedRun[7] = iLoadImage("./assets/images/Invertedrun_8.png");
-	invertedRun[8] = iLoadImage("./assets/images/Invertedrun_9.png");
-	invertedRun[9] = iLoadImage("./assets/images/Invertedrun_10.png");
 	barrelImg[0] = iLoadImage("./assets/images/barrel.png");
 	barrelImg[1] = iLoadImage("./assets/images/barrel_2.png");
 	board = iLoadImage("./assets/images/left.png");
@@ -643,7 +658,7 @@ int main()
 	a1.ymax = p[0].cordy + 16;
 	a1.y = a1.ymax;
 	a1.currentPlatform = 0;
-	lvl = 2;
+	lvl = 1;
 	iStart();
 	return 0;
 }
