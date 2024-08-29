@@ -394,8 +394,6 @@ void level2(){
 	}
 	//Gravity Check Function
 	gravityCheck();
-	//Check Collision of Barrels
-	//if (b1.isInitialized && abs(a1.x - b1.x) <= 16 && !a1.isTakingHit && abs(a1.y - b1.y) <= 10) a1.isTakingHit = true;
 	//Fireball
 	if (!f1.isInitialized){
 		f1.isInitialized = true;
@@ -407,8 +405,7 @@ void level2(){
 		f1.x -= 0.25;
 		if (f1.x <= 0) f1.isInitialized = false;
 	}
-	//Check Collision of Fireball
-	//if (f1.isInitialized && abs(a1.x - (int)f1.x) <= 10 && !a1.isTakingHit && abs(a1.y - f1.y) <= 10) a1.isTakingHit = true;
+	//Check Collision of Fireball and Barrel
 	if (!a1.isTakingHit){
 		if (f1.isInitialized && abs(a1.x - (int)f1.x) <= 10 && abs((int)a1.y - f1.y) <= 20){
 			a1.isTakingHit = true;
